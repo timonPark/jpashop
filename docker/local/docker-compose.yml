@@ -1,0 +1,25 @@
+version: "1.0"
+
+services:
+  bss_db:
+    image: mysql:8
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - type: bind
+        source: ./cnf/my.cnf
+        target: /etc/mysql/conf.d/my.cnf
+    restart: always
+    container_name: jpashop_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: JPA_SHOP_SCHEMA
+      MYSQL_USER: jpashopowner
+      MYSQL_PASSWORD: HYwQ56tk8b53N5a
+    command: --default-time-zone=Asia/Seoul
+    ports:
+      - "13306:3306"
+    expose:
+      - "13306"
+
